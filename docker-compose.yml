@@ -1,0 +1,80 @@
+services:
+  postgres-db:
+    container_name: postgres-sql-teamhub
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: jira
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - teamhub-network
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-teamhub
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - teamhub-network
+
+  bsn-api:
+    container_name: bsn-api
+    image: bsn-api:1.0.0
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/jira
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_PROFILES_ACTIVE: dev
+    networks:
+      - teamhub-network
+    depends_on:
+      - postgres-db
+      - mail-dev
+    restart: unless-stopped
+
+  # Uncomment when you have the frontend image ready
+  # bsn-ui:
+  #   container_name: bsn-ui
+  #   image: bsn-ui:1.0.0
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - teamhub-network
+  #   depends_on:
+  #     - bsn-api
+  #   restart: unless-stopped
+
+networks:
+  teamhub-network:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+
+
+## Key Changes Made
+
+# 1. ✅ **Database container name** matches your Dockerfile: `postgres-db` (so the connection URL works)
+# 2. ✅ **Database credentials** match your Dockerfile environment variables
+# 3. ✅ **Database name** is `jira` (as specified in your `SPRING_DATASOURCE_URL`)
+# 4. ✅ **Image name** matches what you just built: `bsn-api:1.0.0`
+# 5. ✅ **Environment variables** are explicitly set (overriding Dockerfile defaults if needed)
+
+# ## How to Use
+
+# **1. Save this as `docker-compose.yml` in your project root:**
+# ```
+# TeamHubDevops/
+# ├── docker-compose.yml  ← Save here
+# ├── docker/
+# └── backend-Team-Hub/
