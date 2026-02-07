@@ -41,17 +41,16 @@ services:
       - mail-dev
     restart: unless-stopped
 
-  # Uncomment when you have the frontend image ready
-  # bsn-ui:
-  #   container_name: bsn-ui
-  #   image: bsn-ui:1.0.0
-  #   ports:
-  #     - "8080:80"
-  #   networks:
-  #     - teamhub-network
-  #   depends_on:
-  #     - bsn-api
-  #   restart: unless-stopped
+  team-frontend:
+    container_name: team-frontend-ui
+    image: team-frontend:latest
+    ports:
+      - "8080:80"
+    networks:
+      - teamhub-network
+    depends_on:
+      - bsn-api
+    restart: unless-stopped
 
 networks:
   teamhub-network:
@@ -60,21 +59,3 @@ networks:
 volumes:
   postgres:
     driver: local
-
-
-## Key Changes Made
-
-# 1. ✅ **Database container name** matches your Dockerfile: `postgres-db` (so the connection URL works)
-# 2. ✅ **Database credentials** match your Dockerfile environment variables
-# 3. ✅ **Database name** is `jira` (as specified in your `SPRING_DATASOURCE_URL`)
-# 4. ✅ **Image name** matches what you just built: `bsn-api:1.0.0`
-# 5. ✅ **Environment variables** are explicitly set (overriding Dockerfile defaults if needed)
-
-# ## How to Use
-
-# **1. Save this as `docker-compose.yml` in your project root:**
-# ```
-# TeamHubDevops/
-# ├── docker-compose.yml  ← Save here
-# ├── docker/
-# └── backend-Team-Hub/
