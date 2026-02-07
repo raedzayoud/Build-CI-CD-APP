@@ -1,0 +1,62 @@
+<div class="tasks-container-all">
+  <div class="tasks-container">
+    <!-- Header -->
+    <div class="header-container">
+      <div class="header">
+        <h1>Project Tasks</h1>
+        <p>View and manage tasks assigned to each project</p>
+      </div>
+      <button (click)="toggleAppear()">
+        <span class="plus">+</span> New Task
+      </button>
+    </div>
+
+    <!-- Add Task Form -->
+    <div class="add-task-container" *ngIf="appear">
+      <div class="add-task-form">
+        <h2>Add New Task</h2>
+        <div (click)="toggleAppear()" class="close">X</div>
+
+        <form (ngSubmit)="createTask()">
+          <label for="task-name">Task Name</label>
+          <input
+            type="text"
+            id="task-name"
+            [(ngModel)]="nameTask"
+            name="taskName"
+          />
+          <label for="developer">Assign To</label>
+          <select [(ngModel)]="idDeveloper" name="developer" id="developer">
+            <option value="">Select a developer</option>
+            <option *ngFor="let dev of developer" [value]="dev.id">
+              {{ dev.nameDeveloper }}
+            </option>
+          </select>
+
+          <div class="task-add">
+            <button class="add-task" type="submit">Add Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div class="project" *ngIf="tasks.length > 0">
+      <div class="task-list">
+        <div class="task-card" *ngFor="let task of tasks">
+          <h3>{{ task.name }}</h3>
+          <!-- <p>{{ task.description }}</p> -->
+          <div class="task-footer">
+            <span class="assignee">👤</span>
+            <span class="status">{{ task.status }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No tasks message -->
+    <div class="error" *ngIf="tasks.length === 0">
+      <p>No tasks found for this project.</p>
+    </div>
+  </div>
+</div>

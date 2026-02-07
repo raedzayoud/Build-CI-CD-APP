@@ -1,0 +1,23 @@
+<div class="container-all">
+  <div class="container">
+    <h2>Team Members</h2>
+    <p class="subtitle">View and manage your team</p>
+
+    <div class="team" *ngFor="let member of developer">
+      <div class="card">
+        <div class="card-header">
+          <div class="avatar">{{ member.nameDeveloper[0] }}</div>
+          <span class="status available">Available</span>
+        </div>
+        <div class="card-body">
+          <h3>{{ member.nameDeveloper }}</h3>
+          <p class="role">Senior Developer</p>
+          <p class="tasks">5 active tasks</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="developer.length === 0" class="no-developers">
+      There is no team member available
+    </div>
+  </div>
+</div>

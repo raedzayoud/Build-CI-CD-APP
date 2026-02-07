@@ -1,0 +1,128 @@
+<app-menudeveloper></app-menudeveloper>
+<div class="Leav-Management">
+  <div class="container-button">
+    <div class="container-title">
+      <h1>Leave Management</h1>
+      <p>Request and track your time off</p>
+    </div>
+    <button class="Leave-button" (click)="toggleAppear()">
+      <span class="add-leave">+</span> New Leave
+    </button>
+  </div>
+
+  <div
+    class="add-leave-container"
+    *ngIf="isAppear"
+    (click)="closeIfOutSide($event)"
+  >
+    <div class="container-leave" (click)="$event.stopPropagation()">
+      <h3>Request New Leave</h3>
+      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+        <label for="leave-type">Leave Type</label>
+        <select id="leave-type" formControlName="leaveType">
+          <option value="">-- Select Type --</option>
+          <option value="vacation">Vacation</option>
+          <option value="sick">Sick Leave</option>
+          <option value="personal">Personal</option>
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            leaveForm.get('leaveType')?.touched &&
+            leaveForm.get('leaveType')?.hasError('required')
+          "
+        >
+          Leave type is required.
+        </div>
+
+        <label for="start-date">Start Date</label>
+        <input type="date" id="start-date" formControlName="startDate" />
+        <div
+          class="error"
+          *ngIf="
+            leaveForm.get('startDate')?.touched &&
+            leaveForm.get('startDate')?.hasError('required')
+          "
+        >
+          Start date is required.
+        </div>
+
+        <label for="end-date">End Date</label>
+        <input type="date" id="end-date" formControlName="endDate" />
+        <div
+          class="error"
+          *ngIf="
+            leaveForm.get('endDate')?.touched &&
+            leaveForm.get('endDate')?.hasError('required')
+          "
+        >
+          End date is required.
+        </div>
+
+        <label for="reason">Reason</label>
+        <textarea id="reason" formControlName="reason" rows="3"></textarea>
+        <div class="error" *ngIf="leaveForm.get('reason')?.touched">
+          <span *ngIf="leaveForm.get('reason')?.hasError('required')"
+            >Reason is required.</span
+          >
+          <span *ngIf="leaveForm.get('reason')?.hasError('minlength')"
+            >Reason must be at least 5 characters.</span
+          >
+        </div>
+
+        <button type="submit" class="submit-button">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Leave Summary Section -->
+  <div class="summary-cards">
+    <div class="card">
+      <p class="label">Total Leave</p>
+      <h2>20 days</h2>
+      <p class="sub-label">Annual allocation</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Used</p>
+      <h2>8 days</h2>
+      <p class="sub-label">This year</p>
+    </div>
+
+    <div class="card">
+      <p class="label">Remaining</p>
+      <h2>12 days</h2>
+      <p class="sub-label">Available</p>
+    </div>
+  </div>
+
+  <!-- Leave History -->
+  <div class="leave-history">
+    <h3>Leave History</h3>
+    <p>Your past and upcoming leave</p>
+
+    <div class="leave-card">
+      <div>
+        <h4>Vacation</h4>
+        <p>Nov 20 - Nov 24 • 5 days</p>
+      </div>
+      <span class="status approved">Approved</span>
+    </div>
+
+    <div class="leave-card">
+      <div>
+        <h4>Sick Leave</h4>
+        <p>Oct 15 - Oct 16 • 2 days</p>
+      </div>
+      <span class="status approved">Approved</span>
+    </div>
+
+    <div class="leave-card">
+      <div>
+        <h4>Personal</h4>
+        <p>Sep 10 - Sep 12 • 3 days</p>
+      </div>
+      <span class="status pending">Pending</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+.container-title p{
+  color: gray;
+}
+
+
+.leave-management {
+  font-family: Arial, sans-serif;
+  padding: 40px 80px;
+  background-color: #f9fafb;
+  color: #222;
+}
+
+/* Title Section */
+.container-title {
+  margin-left: 10px;
+  margin-bottom: 40px;
+}
+
+.container-title h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.container-title p {
+  color: #666;
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.card {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-width: 250px;
+}
+
+.card .label {
+  font-size: 14px;
+  color: #555;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.card .sub-label {
+  font-size: 13px;
+  color: #777;
+}
+
+/* Leave History */
+.leave-history {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.leave-history h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.leave-history p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Individual Leave Cards */
+.leave-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.leave-card h4 {
+  margin: 0;
+}
+
+.leave-card p {
+  color: #666;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* Status Badges */
+.status {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.status.approved {
+  background-color: #0d6efd;
+}
+
+.status.pending {
+  background-color: #ffc107;
+}
+
+.status.rejected {
+  background-color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .summary-cards {
+    flex-direction: column;
+  }
+}

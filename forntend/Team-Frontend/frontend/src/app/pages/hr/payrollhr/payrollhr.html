@@ -1,0 +1,46 @@
+<div class="container-all">
+  <div class="container">
+    <h1>Payroll Management</h1>
+    <p class="subtitle">View and manage employee compensation</p>
+
+    <div class="stats">
+      <div class="card">
+        <p class="card-title">Total Monthly Payroll</p>
+        <h2>${{ salaryTotal || 0 }}</h2>
+        <p class="desc">For {{ employees?.length || 0 }} employees</p>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Average Salary</p>
+        <h2>${{ avergeSalary }}</h2>
+        <p class="desc">Per employee/month</p>
+      </div>
+    </div>
+
+    <div class="employee-section">
+      <h3>Employee Payroll</h3>
+      <p class="desc">Monthly compensation details</p>
+
+      <!-- Dynamic Employee Cards -->
+      <div class="employee-card" *ngFor="let emp of employees">
+        <div class="avatar">
+          {{ emp.name ? emp.name[0].toUpperCase() : "?" }}
+        </div>
+
+        <div class="employee-info">
+          <p class="name">{{ emp.name }}</p>
+          <p class="role">{{ emp.email }}</p>
+        </div>
+
+        <div class="salary">
+          <!-- Change this if your backend sends salary -->
+          <!-- $8,500 -->
+        </div>
+
+        <!-- <button class="status">Processed</button> -->
+
+        <div class="menu">⋮</div>
+      </div>
+    </div>
+  </div>
+</div>

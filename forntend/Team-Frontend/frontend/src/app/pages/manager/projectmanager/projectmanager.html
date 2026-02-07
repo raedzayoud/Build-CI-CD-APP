@@ -1,0 +1,21 @@
+<div class="container-task">
+  <div class="title">
+    <div class="sous-titre">
+      <h1>Task Board</h1>
+      <p>Manage and assign tasks to your team</p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card" *ngFor="let project of projects">
+      <div class="card-title">
+        <h3>{{ project.name }}</h3>
+      </div>
+      <button (click)="gotoTask(project.id)" class="details">Details</button>
+    </div>
+  </div>
+
+  <div *ngIf="projects.length === 0" class="no-projects">
+    There is no project available
+  </div>
+</div>

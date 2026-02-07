@@ -1,0 +1,239 @@
+.tasks-container-all {
+  font-family: "Poppins", sans-serif;
+  background: #f9fafc;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+/* Container */
+.tasks-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-container button{
+  background: linear-gradient(135deg, #007bff, #00c4ff);;
+  color: white;
+  padding: 10px 20px; ;
+  border: none;
+  border-radius: 20px;
+  font-size:15px ;
+  cursor: pointer;
+}
+
+.header-container button:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.add-task-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* dark transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.task-add{
+  display: flex;
+  justify-content: center;
+}
+.add-task {
+  background: linear-gradient(135deg, #007bff, #00c4ff);
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+
+
+.add-task-form {
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+.add-task-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.add-task-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.add-task-form input{
+  width: 85%;
+}
+
+.add-task-form select{
+  width: 90%;
+}
+
+.add-task-form input,
+.add-task-form select {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.add-task-form input:focus,
+.add-task-form textarea:focus {
+  border-color: #007bff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Header */
+
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #777;
+}
+
+/* Project Section */
+.project {
+  margin-bottom: 40px;
+}
+
+.project h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+/* Task List Grid */
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Task Card */
+.task-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 5px solid transparent;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Priority Badge */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.badge.low {
+  background: #8bc34a;
+}
+
+.badge.medium {
+  background: #ffc107;
+  color: #222;
+}
+
+.badge.high {
+  background: #e53935;
+}
+
+/* Task Content */
+.task-card h3 {
+  font-size: 1.1rem;
+  margin: 6px 0;
+}
+
+.task-card p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+/* Footer */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.status {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.error {
+  color: #888;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+.close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.close:hover{
+  color: red;
+}

@@ -1,0 +1,83 @@
+.tasks-page {
+  font-family: Arial, sans-serif;
+  color: #222;
+  padding: 0 40px;
+}
+
+.tasks-page h2 {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+
+.tasks-page p {
+  color: #666;
+  margin-bottom: 30px;
+}
+/* Task cards */
+.cards {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cards:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* Task title */
+.cards h4 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Divider */
+.cards hr {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin: 15px 0;
+}
+
+/* Task select */
+.cards select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+}
+
+.cards select:hover {
+  border-color: rgb(0, 89, 255);
+  background-color: #fff;
+}
+
+.cards select:focus {
+  outline: none;
+  border-color: rgb(0, 89, 255);;
+  box-shadow: 0 0 5px rgb(0, 89, 255);;
+}
+
+.error{
+  text-align: center;
+  color: #888;
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+
+
+@media (min-width:576px){
+    .container{
+        margin-top: 10vh;
+    }
+}
+

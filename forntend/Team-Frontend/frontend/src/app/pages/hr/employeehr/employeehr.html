@@ -1,0 +1,229 @@
+<div class="directory-container-all">
+  <div class="directory-container">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1>Employee Directory</h1>
+        <p>Manage your team members</p>
+      </div>
+      <div class="buttons-container">
+        <button class="add-btn" (click)="showForm()">
+          <i class="fa-solid fa-user-plus"></i> Add Employee
+        </button>
+        <button class="add-btn" (click)="showformAffect()">
+          <i class="fa-solid fa-user-plus"></i> Affect Employee
+        </button>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="search-container">
+      <div class="search-box">
+        <i
+          (click)="searchEmployee(searchInput.value)"
+          class="fa-solid fa-magnifying-glass"
+        ></i>
+        <input
+          #searchInput
+          type="text"
+          placeholder="Search employees..."
+          (keyup.enter)="searchEmployee(searchInput.value)"
+        />
+      </div>
+    </div>
+
+    <!-- Employee list -->
+    <div class="employee-list">
+      <div class="employee-card" *ngFor="let emp of employees">
+        <div class="employee-left">
+          <div class="avatar">{{ emp.name[0].toUpperCase() }}</div>
+          <div>
+            <h3>{{ emp.name }}</h3>
+            <p>{{ emp.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Affect Employee Modal -->
+  <div
+    class="add-Employee-container"
+    *ngIf="isAffectAppear"
+    (click)="closeAffectModal($event)"
+  >
+    <div class="container-Employee" (click)="$event.stopPropagation()">
+      <h3>Affect Employee</h3>
+      <form [formGroup]="affectForm" (ngSubmit)="onAffectSubmit()">
+        <!-- Developer Select -->
+        <div class="form-group">
+          <label for="developerName">Developer</label>
+          <select id="developerName" formControlName="developerName" required>
+            <option value="" disabled>Select Developer</option>
+            <option
+              *ngFor="let dev of employeeHrWithoutManager"
+              [value]="dev.id"
+            >
+              {{ dev.name }}
+            </option>
+          </select>
+          <div
+            class="error"
+            *ngIf="
+              affectForm.get('developerName')?.touched &&
+              affectForm.get('developerName')?.invalid
+            "
+          >
+            <small *ngIf="affectForm.get('developerName')?.errors?.['required']"
+              >Developer is required.</small
+            >
+          </div>
+        </div>
+
+        <!-- Manager Select -->
+        <div class="form-group">
+          <label for="managerName">Manager</label>
+          <select id="managerName" formControlName="managerName" required>
+            <option value="" disabled>Select Manager</option>
+            <option *ngFor="let mgr of managers" [value]="mgr.idManager">
+              {{ mgr.name }}
+            </option>
+          </select>
+          <div
+            class="error"
+            *ngIf="
+              affectForm.get('managerName')?.touched &&
+              affectForm.get('managerName')?.invalid
+            "
+          >
+            <small *ngIf="affectForm.get('managerName')?.errors?.['required']"
+              >Manager is required.</small
+            >
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">Affect Employee</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Employee Modal -->
+  <div
+    class="add-Employee-container"
+    *ngIf="isAppear"
+    (click)="closeIfOutSide($event)"
+  >
+    <div class="container-Employee" (click)="$event.stopPropagation()">
+      <h3>Add New Employee</h3>
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Enter full name"
+            required
+          />
+          <div
+            class="error"
+            *ngIf="
+              employeeForm.get('name')?.touched &&
+              employeeForm.get('name')?.invalid
+            "
+          >
+            <small *ngIf="employeeForm.get('name')?.errors?.['required']"
+              >Full name is required.</small
+            >
+            <small *ngIf="employeeForm.get('name')?.errors?.['minlength']"
+              >Full name must be at least 3 characters.</small
+            >
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter email"
+            required
+          />
+          <div
+            class="error"
+            *ngIf="
+              employeeForm.get('email')?.touched &&
+              employeeForm.get('email')?.invalid
+            "
+          >
+            <small *ngIf="employeeForm.get('email')?.errors?.['required']"
+              >Email is required.</small
+            >
+            <small *ngIf="employeeForm.get('email')?.errors?.['email']"
+              >Enter a valid email address.</small
+            >
+          </div>
+        </div>
+
+        <!-- Salary -->
+        <div class="form-group">
+          <label for="salary">Salary</label>
+          <input
+            id="salary"
+            type="number"
+            formControlName="salary"
+            placeholder="Enter salary"
+            required
+          />
+          <div
+            class="error"
+            *ngIf="
+              employeeForm.get('salary')?.touched &&
+              employeeForm.get('salary')?.invalid
+            "
+          >
+            <small *ngIf="employeeForm.get('salary')?.errors?.['required']"
+              >Salary is required.</small
+            >
+            <small *ngIf="employeeForm.get('salary')?.errors?.['min']"
+              >Salary must be at least 0.</small
+            >
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter password"
+            required
+          />
+          <div
+            class="error"
+            *ngIf="
+              employeeForm.get('password')?.touched &&
+              employeeForm.get('password')?.invalid
+            "
+          >
+            <small *ngIf="employeeForm.get('password')?.errors?.['required']"
+              >Password is required.</small
+            >
+            <small *ngIf="employeeForm.get('password')?.errors?.['minlength']"
+              >Password must be at least 6 characters.</small
+            >
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">Add Employee</button>
+      </form>
+    </div>
+  </div>
+</div>
