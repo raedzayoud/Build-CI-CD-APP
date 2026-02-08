@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HrService {
-  baseUrl: string = 'http://127.0.0.1:8080/api/';
+  baseUrl: string = 'http://127.0.0.1:8088/api/';
 
   constructor(private http: HttpClient) {}
 
@@ -66,8 +66,7 @@ export class HrService {
   }
 
   affectManagerToDeveloper(developerId: number, managerId: number) {
-    const url =
-      this.baseUrl + `v1/hr/affecteManager/${developerId}/manager/${managerId}`;
+    const url = this.baseUrl + `v1/hr/affecteManager/${developerId}/manager/${managerId}`;
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

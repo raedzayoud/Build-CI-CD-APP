@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ManagerService {
-  baseUrl: string = 'http://127.0.0.1:8080/api/';
+  baseUrl: string = 'http://127.0.0.1:8088/api/';
 
   constructor(private http: HttpClient) {}
 
@@ -44,8 +44,7 @@ export class ManagerService {
   }
 
   getAllDevelopersByManager(managerId: number) {
-    const developersManager =
-      this.baseUrl + 'v1/manager/developers/' + managerId;
+    const developersManager = this.baseUrl + 'v1/manager/developers/' + managerId;
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -65,8 +64,7 @@ export class ManagerService {
   }
 
   getAllDifferentTasksStatus() {
-    const tasksStatusUrl =
-      this.baseUrl + `v1/manager/counts/${localStorage.getItem('idManager')}`;
+    const tasksStatusUrl = this.baseUrl + `v1/manager/counts/${localStorage.getItem('idManager')}`;
     const token = localStorage.getItem('token') || '';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

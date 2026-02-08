@@ -5,13 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DeveloperService {
-  baseUrl: string = 'http://127.0.0.1:8080/api/';
+  baseUrl: string = 'http://127.0.0.1:8088/api/';
 
   constructor(private http: HttpClient) {}
 
   getTask(idDeveloper: number) {
-    const createTaskUrl =
-      this.baseUrl + `v1/developer/taskstodo/${idDeveloper}`;
+    const createTaskUrl = this.baseUrl + `v1/developer/taskstodo/${idDeveloper}`;
     const token = localStorage.getItem('token') || '';
 
     const headers = new HttpHeaders({
@@ -33,9 +32,7 @@ export class DeveloperService {
   }
 
   getSalary() {
-    const getSalary =
-      this.baseUrl +
-      `v1/developer/${Number(localStorage.getItem('idDeveloper'))}`;
+    const getSalary = this.baseUrl + `v1/developer/${Number(localStorage.getItem('idDeveloper'))}`;
     const token = localStorage.getItem('token') || '';
 
     const headers = new HttpHeaders({
@@ -46,8 +43,7 @@ export class DeveloperService {
   }
 
   getTaskType(idDeveloper: number) {
-    const getTaskTypeUrl =
-      this.baseUrl + `v1/developer/tasktype/${idDeveloper}`;
+    const getTaskTypeUrl = this.baseUrl + `v1/developer/tasktype/${idDeveloper}`;
 
     const token = localStorage.getItem('token') || '';
 
