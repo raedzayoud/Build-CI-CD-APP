@@ -30,7 +30,7 @@ export class Login implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private managerService: ManagerService,
-    private developerService: DeveloperService
+    private developerService: DeveloperService,
   ) {}
 
   ngOnInit(): void {
@@ -85,20 +85,11 @@ export class Login implements OnInit {
             next: (data: any) => {
               const developer = data.detailsDeveloper;
               localStorage.setItem('emailDeveloper', developer.email || '');
-              localStorage.setItem(
-                'idDeveloper',
-                developer.idDeveloper.toString()
-              );
-              console.log(
-                'Logged in developer ID:',
-                localStorage.getItem('idDeveloper')
-              );
+              localStorage.setItem('idDeveloper', developer.idDeveloper.toString());
+              console.log('Logged in developer ID:', localStorage.getItem('idDeveloper'));
               localStorage.setItem('idUser', developer.idUser.toString());
               localStorage.setItem('nameDeveloper', developer.name || '');
-              localStorage.setItem(
-                'idManager',
-                developer.idManager.toString() || ''
-              );
+              localStorage.setItem('idManager', developer.idManager.toString() || '');
               this.router.navigate(['/developer']);
             },
             error: () => {
@@ -109,7 +100,7 @@ export class Login implements OnInit {
                   duration: 3000,
                   verticalPosition: 'top',
                   panelClass: ['error-snackbar'],
-                }
+                },
               );
             },
           });
@@ -124,7 +115,7 @@ export class Login implements OnInit {
       error: (error) => {
         this.loading = false;
         const message =
-          error?.error?.message || 'Login failed. Please try again.';
+          error?.error?.message || 'Your email or password is incorrect. Please try again.';
         this.snackBar.open(message, 'Close', {
           duration: 3000,
           verticalPosition: 'top',
